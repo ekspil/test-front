@@ -39,10 +39,17 @@ export default {
     entities: [],
     type: 'sum'
   }),
+  methods: {
+    getData: async function(){
+      const {data} = await axios.get('http://localhost:3021/api/v1/getAll')
+      this.entities = data
+    }
+  },
+  beforeMount(){
+    this.getData()
+  },
   mounted() {
-    axios
-            .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-            .then(response => (this.entities = response));
+    setInterval(this.getData, 5000)
   }
 
 };

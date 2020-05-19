@@ -2,7 +2,7 @@
   <v-data-table
           :headers="headers"
           :items="ent"
-          :items-per-page="20"
+          :items-per-page="21"
           :footer-props="footerProps"
           class="elevation-1"
           dense
@@ -161,7 +161,7 @@
         const obj = JSON.parse(JSON.stringify(this.temp))
         for (let value in this.summ){
           if (value.includes("value")) {
-            obj[value] = this.summ[value] / this.entities.length
+            obj[value] = Number((this.summ[value] / this.entities.length).toFixed(2))
           }
 
 
@@ -180,7 +180,7 @@
     data: () => ({
       footerProps: {
         disableItemsPerPage: true,
-        itemsPerPageOptions: [20]
+        itemsPerPageOptions: [21]
       },
       headers: [
         {
